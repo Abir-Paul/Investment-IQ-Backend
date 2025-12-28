@@ -6,7 +6,7 @@ spring:
     name: investment-iq-backend
 
   datasource:
-    url: jdbc:postgresql://aws-1-ap-northeast-2.pooler.supabase.com:6543/postgres
+    url: jdbc:postgresql://aws-1-ap-northeast-2.pooler.supabase.com:6543/postgres?currentSchema=investment_iq_dev
     username: postgres.hbbhqhyhboghwglajrlx
     password: investmentiqdb2026
 
