@@ -1,4 +1,4 @@
-package com.investmentiq.base.globalAspects;
+package com.investmentiq.investment_iq.base.globalAspects;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;

@@ -1,7 +1,7 @@
-package com.investmentiq.base.repositories;
+package com.investmentiq.investment_iq.base.repositories;
 
-import com.investmentiq.base.entities.BaseEntity;
-import com.investmentiq.base.globalEnums.GlobalEnums;
+import com.investmentiq.investment_iq.base.entities.BaseEntity;
+import com.investmentiq.investment_iq.base.globalEnums.GlobalEnums;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.support.JpaEntityInformation;

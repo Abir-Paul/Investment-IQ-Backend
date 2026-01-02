@@ -1,6 +1,6 @@
 package com.investmentiq.investment_iq.address.repositories;
 
-import com.investmentiq.base.repositories.BaseRepository;
+import com.investmentiq.investment_iq.base.repositories.BaseRepository;
 import com.investmentiq.investment_iq.address.entities.Address;
 
 import java.util.UUID;

@@ -1,4 +1,4 @@
-package com.investmentiq.base.globalEnums;
+package com.investmentiq.investment_iq.base.globalEnums;
 
 public class GlobalEnums {
 

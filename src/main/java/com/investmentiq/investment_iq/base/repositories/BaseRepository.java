@@ -1,6 +1,6 @@
-package com.investmentiq.base.repositories;
+package com.investmentiq.investment_iq.base.repositories;
 
-import com.investmentiq.base.entities.BaseEntity;
+import com.investmentiq.investment_iq.base.entities.BaseEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.NoRepositoryBean;
 

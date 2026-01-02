@@ -1,4 +1,4 @@
-package com.investmentiq.base.globalConstants;
+package com.investmentiq.investment_iq.base.globalConstants;
 
 public class Constants {
 

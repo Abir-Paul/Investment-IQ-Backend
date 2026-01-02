@@ -1,7 +1,7 @@
-package com.investmentiq.base.entities;
+package com.investmentiq.investment_iq.base.entities;
 
-import com.investmentiq.base.globalConstants.Constants;
-import com.investmentiq.base.globalEnums.GlobalEnums;
+import com.investmentiq.investment_iq.base.globalConstants.Constants;
+import com.investmentiq.investment_iq.base.globalEnums.GlobalEnums;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.UuidGenerator;

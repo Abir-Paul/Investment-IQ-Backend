@@ -1,6 +1,6 @@
 package com.investmentiq.investment_iq.address.entities;
 
-import com.investmentiq.base.entities.BaseEntity;
+import com.investmentiq.investment_iq.base.entities.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.validation.constraints.NotBlank;
