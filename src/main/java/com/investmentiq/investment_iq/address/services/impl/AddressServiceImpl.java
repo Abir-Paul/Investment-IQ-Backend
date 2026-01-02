@@ -26,9 +26,7 @@ public class AddressServiceImpl implements AddressService {
 
     @Override
     public void createAddressForInstitution(@NotNull @Valid Address addresses, @NotBlank UUID institutionId) {
-
         institutionService.checkIfInstitutionExistsById(institutionId);
         addressRepo.save(addresses);
-
     }
 }
