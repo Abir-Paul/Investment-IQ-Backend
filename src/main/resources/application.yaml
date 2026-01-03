@@ -4,9 +4,14 @@ server:
 spring:
   application:
     name: investment-iq-backend
+  security:
+    user:
+      name: admin
+      password: admin
+      roles: ADMIN
 
   datasource:
-    url: jdbc:postgresql://aws-1-ap-northeast-2.pooler.supabase.com:6543/postgres?currentSchema=investment_iq_test
+    url: jdbc:postgresql://aws-1-ap-northeast-2.pooler.supabase.com:6543/postgres?prepareThreshold=0
     username: postgres.hbbhqhyhboghwglajrlx
     password: investmentiqdb2026
 

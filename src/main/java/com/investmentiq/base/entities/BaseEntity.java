@@ -1,99 +1,95 @@
 package com.investmentiq.base.entities;
 
+import com.investmentiq.base.globalConstants.Constants;
+import com.investmentiq.base.globalEnums.GlobalEnums;
+import jakarta.persistence.*;
+import lombok.Data;
+
 import java.time.Instant;
 import java.util.Objects;
 import java.util.UUID;
 
-import org.hibernate.annotations.UuidGenerator;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.MappedSuperclass;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.PreUpdate;
-import lombok.Getter;
-import lombok.Setter;
-
-import com.investmentiq.base.constants.AppConstants;
-import com.investmentiq.base.enums.GlobalEnums;
-
-@Getter
-@Setter
+@Data
 @MappedSuperclass
 public class BaseEntity {
 
-	@Id
-	@GeneratedValue
-	@UuidGenerator
-	@Column(updatable = false, nullable = false)
-	private UUID uuid;
+    @Id
+    @Column(nullable = false, updatable = false)
+    private UUID id;
 
-	@Column(updatable = false)
-	private Instant createdAt;
+    @Column(nullable = false)
+    private Instant dbLock;
 
-	@Column(updatable = false)
-	private String createdBy;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 1)
+    private GlobalEnums.delFlg delFlg;
 
-	@Column
-	private Instant updatedAt;
+    @Column(nullable = false, updatable = false)
+    private Instant createdAt;
 
-	@Column
-	private String updatedBy;
+    @Column(nullable = false, updatable = false)
+    private String createdBy;
 
-	@Column
-	private Instant dbLock;
-	
-	@Column
-	private GlobalEnums.YesNoFlag delFlg;
+    @Column(nullable = false)
+    private Instant updatedAt;
 
-	@PrePersist
-	public void prePersist() {
-		
-		setCreatedAt(Instant.now());
-		
-		if (Objects.isNull(getCreatedBy())) 
-		{
-			setCreatedBy(AppConstants.SystemUser);
-		}
-		
-		setUpdatedAt(Instant.now());
-		
-		if(Objects.isNull(getUpdatedBy()))
-		{
-			setUpdatedBy(AppConstants.SystemUser);
-		}
-		
-		setDelFlg(GlobalEnums.YesNoFlag.N);
-		
-		setDbLock(Instant.now());
+    @Column(nullable = false)
+    private String updatedBy;
 
-		onPrePersist();
-	}
+    @PrePersist
+    public void prePersist() {
+        setId(UUID.randomUUID());
 
-	@PreUpdate
-	public void preUpdate() {
+        if (Objects.isNull(getCreatedAt())) {
+            setCreatedAt(Instant.now());
+        }
 
-        this.setUpdatedAt(Instant.now());
-		
-		if(Objects.isNull(getUpdatedBy()))
-		{
-			setUpdatedBy(AppConstants.SystemUser);
-		}
+        if (Objects.isNull(getUpdatedAt())) {
+            setUpdatedAt(Instant.now());
+        }
 
-		onPreUpdate();
-	}
+        if (Objects.isNull(getCreatedBy())) {
+            setCreatedBy(Constants.systemCreatedEntity);
+        }
 
-    //Implement in child classes to have custom prePersist logic
-	public void onPrePersist()
-	{
+        if (Objects.isNull(getUpdatedBy())) {
+            setUpdatedBy(Constants.systemCreatedEntity);
+        }
 
-	}
+        setDelFlg(GlobalEnums.delFlg.N);
 
-	//Implement in child classes to have customPrePersist logic
-	public void onPreUpdate()
-	{
+        setDbLock(Instant.now());
 
-	}
+        entitySpecificPrePersist();
 
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        if (Objects.isNull(getUpdatedBy())) {
+            setUpdatedBy(Constants.systemCreatedEntity);
+        }
+
+        if (Objects.isNull(getUpdatedAt())) {
+            setUpdatedAt(Instant.now());
+        }
+
+        entitySpecificPreUpdate();
+
+    }
+
+
+    /**
+     * Override in child class to implement more setters
+     */
+    public void entitySpecificPrePersist() {
+
+    }
+
+    /**
+     * Override in child class to implement more setters
+     */
+    public void entitySpecificPreUpdate() {
+
+    }
 }
