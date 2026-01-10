@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -29,11 +30,14 @@ public class InstitutionServiceImpl implements InstitutionService {
     public void processCreateInstitution(@Valid Institution institution)
     {
         log.info("saving institution :{}", institution);
+        Institution dbInstitution=null;
         if(Objects.nonNull(institution.getId()))
         {
-            checkIfInstitutionExistsById(institution.getId());
+            dbInstitution=institutionRepo.findActiveById(institution.getId()).orElseThrow(()->new RuntimeException("Entity Does Not Exist"));
+            dbInstitution.setBusinessName(institution.getBusinessName());
+            dbInstitution.setType(institution.getType());
         }
-        institutionRepo.save(institution);
+        institutionRepo.save(Objects.nonNull(dbInstitution)?dbInstitution:institution);
     }
 
     public void checkIfInstitutionExistsById(UUID uuid)
@@ -42,5 +46,10 @@ public class InstitutionServiceImpl implements InstitutionService {
         {
             //throw exception
         }
+    }
+
+    public List<Institution> getAllInstitutions()
+    {
+        return institutionRepo.findAll();
     }
 }

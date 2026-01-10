@@ -29,4 +29,10 @@ public class InstitutionController {
         institutionService.processCreateInstitution(institution);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @GetMapping("/list")
+    public ResponseEntity<?> getAllInstitutions()
+    {
+       return ResponseEntity.ok(institutionService.getAllInstitutions());
+    }
 }
