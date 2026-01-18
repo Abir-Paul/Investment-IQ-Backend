@@ -15,7 +15,6 @@ import java.util.Objects;
 import java.util.UUID;
 
 @Service
-@Validated
 public class InstitutionServiceImpl implements InstitutionService {
 
     private final InstitutionRepo institutionRepo;
@@ -27,7 +26,7 @@ public class InstitutionServiceImpl implements InstitutionService {
 
     @Transactional(rollbackOn = Exception.class)
     @Override
-    public void processCreateInstitution(@Valid Institution institution)
+    public void processCreateInstitution(Institution institution)
     {
         log.info("saving institution :{}", institution);
         Institution dbInstitution=null;
